@@ -2,7 +2,7 @@
 
 #### Create the MVP of a dating app similar to Tinder
 
-You can find ready HTML templates of all needed pages in the [templates](./templates) folder.
+You can find ready HTML templates of all needed pages in the [templates](../src/main/java/templates) folder.
 
 #### Teamwork
 
