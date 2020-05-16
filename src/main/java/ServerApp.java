@@ -11,9 +11,9 @@ import java.util.EnumSet;
 
 public class ServerApp {
     private final static PostgreServer dbserver = new PostgreServer();
-    private final static String URL = "jdbc:postgresql://ec2-54-228-251-117.eu-west-1.compute.amazonaws.com:5432/d63vvi0hqlhno4";
-    private final static String NAME = "kvgevlmdsbfkhp";
-    private final static String PASSWORD = "84e5e80296109d5da5a7dee02c518f38b008533ac9bee837ed1880421e61c909";
+    private final static String URL = "jdbc:postgresql://ec2-54-195-247-108.eu-west-1.compute.amazonaws.com:5432/d6953kdjrm3v1c";
+    private final static String NAME = "kgdebzmkjzrjyg";
+    private final static String PASSWORD = "55230058b15e4f8e18a9b543cd053afe105413d85b996e6872458bf2030ae99f";
 
 
     public static void main(String[] args) throws Exception {

@@ -1,0 +1,14 @@
+Host
+ec2-54-195-247-108.eu-west-1.compute.amazonaws.com
+Database
+d6953kdjrm3v1c
+User
+kgdebzmkjzrjyg
+Port
+5432
+Password
+55230058b15e4f8e18a9b543cd053afe105413d85b996e6872458bf2030ae99f
+URI
+postgres://kgdebzmkjzrjyg:55230058b15e4f8e18a9b543cd053afe105413d85b996e6872458bf2030ae99f@ec2-54-195-247-108.eu-west-1.compute.amazonaws.com:5432/d6953kdjrm3v1c
+Heroku CLI
+heroku pg:psql postgresql-transparent-13586 --app tinder-imp
