@@ -11,16 +11,14 @@ import java.util.EnumSet;
 
 public class ServerApp {
     private final static PostgreServer dbserver = new PostgreServer();
-    private final static String URL = "";
-    private final static String NAME = "";
-    private final static String PASSWORD = "";
+    private final static String URL = "jdbc:postgresql://ec2-54-228-251-117.eu-west-1.compute.amazonaws.com:5432/d63vvi0hqlhno4";
+    private final static String NAME = "kvgevlmdsbfkhp";
+    private final static String PASSWORD = "84e5e80296109d5da5a7dee02c518f38b008533ac9bee837ed1880421e61c909";
 
 
     public static void main(String[] args) throws Exception {
         Server server = new Server(8080);
         EnumSet<DispatcherType> ft = EnumSet.of(DispatcherType.REQUEST);
-
-
         ServletContextHandler handler = new ServletContextHandler();
         Connection conn = dbserver.createConnection(URL,NAME,PASSWORD);
 
@@ -31,4 +29,5 @@ public class ServerApp {
         server.start();
         server.join();
     }
+
 }
