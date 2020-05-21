@@ -13,11 +13,13 @@ import java.util.stream.Collectors;
 public class TemplateEngine {
 
     private final Configuration config;
+    private final String root_path;
 
     public TemplateEngine(String root_path)  {
+        this.root_path=root_path;
         this.config = new Configuration(Configuration.VERSION_2_3_28){{
             try {
-                setDirectoryForTemplateLoading(new File("./src/main/java/Templates/"));
+                setDirectoryForTemplateLoading(new File(root_path));
             } catch (IOException e) {
                 e.printStackTrace();
 
@@ -44,7 +46,7 @@ public class TemplateEngine {
     }
 
     public void render(String templateName,HttpServletResponse resp){
-        String fullPath = "./src/main/java/Templates/".concat(templateName).concat("/");
+        String fullPath = root_path.concat(templateName);
         try (PrintWriter w = resp.getWriter()){
             String content  = new BufferedReader(new FileReader(new File(fullPath)))
                     .lines()

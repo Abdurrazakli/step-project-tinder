@@ -12,7 +12,6 @@ import org.eclipse.jetty.servlet.ServletHolder;
 
 import javax.servlet.DispatcherType;
 import java.util.EnumSet;
-import java.util.UUID;
 
 public class ServerApp {
     private final static PostgresServer dbserver = new PostgresServer();
@@ -25,16 +24,16 @@ public class ServerApp {
         Server server = new Server(8080);
         EnumSet<DispatcherType> ft = EnumSet.of(DispatcherType.REQUEST);
         ServletContextHandler handler = new ServletContextHandler();
-        DBSetup.migrate(URL,NAME,PASSWORD);
+        DBSetup.migrate(URL,NAME,PASSWORD);                                   //Might be a problem. Two connection for migration and myBatis
         SqlSession session = dbserver.createConnection(URL, NAME, PASSWORD);
 
-        //Testing the connection
-        User user = new User(UUID.randomUUID(), "test1", "test", Gender.F, "path");
-        UserMapper mapper = session.getMapper(UserMapper.class);
-        mapper.insert(user);
-        session.commit();
-        session.close();
-        //testing ends
+//        Testing the connection+
+//        User user = new User(UUID.randomUUID(), "test1", "test", Gender.F, "path");
+//        UserMapper mapper = session.getMapper(UserMapper.class);
+//        mapper.insert(user);
+//        session.commit();
+//        session.close();
+//        testing ends
 
         handler.addServlet(new ServletHolder(new UsersServlet(engine,session)),"/users/");
         handler.addServlet(new ServletHolder(new RegisterServlet(engine,session)),"/register/");
