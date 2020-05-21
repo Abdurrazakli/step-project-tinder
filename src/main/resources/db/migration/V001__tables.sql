@@ -1,8 +1,8 @@
-CREATE TYPE gender_t AS ENUM('M','F');
+CREATE TYPE gender_t AS ENUM('Male','Female');
 CREATE TABLE "user" ( id uuid DEFAULT uuid_generate_v4(),
                       username VARCHAR(25) NOT NULL ,
                       password VARCHAR(35) NOT NULL ,
-                      gender gender_t,
+                      gender VARCHAR(1),
                       imageURL VARCHAR(50) NOT NULL ,
                       PRIMARY KEY (id)
                     );

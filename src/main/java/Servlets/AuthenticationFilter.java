@@ -1,19 +1,23 @@
 package Servlets;
 
 
+import Services.UserService;
+import org.apache.ibatis.session.SqlSession;
+
 import javax.servlet.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.UUID;
 
-public class LoginFilter implements Filter {
-//    private final AuthController<Customer> authController;
+public class AuthenticationFilter implements Filter {
+    private final UserService service;
 
-//    public LoginFilter(Connection conn){
-//        authController = new AuthController<>(conn);
-//    }
+    public AuthenticationFilter(SqlSession session) {
+        service = new UserService(session);
+    }
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -37,11 +41,10 @@ public class LoginFilter implements Filter {
     }
 
     private boolean checkCookie(Cookie cookie) {
-//        return cookie.getName().equals("id") &&
-//         authController.ifUserExists(
-//                 UUID.fromString(cookie.getValue())
-//         );
-        throw new IllegalArgumentException("not impl");
+        return cookie.getName().equals("id") &&
+         service.ifUserExists(
+                 UUID.fromString(cookie.getValue())
+         );
     }
 
     private boolean isHttp(ServletRequest req, ServletResponse resp) {

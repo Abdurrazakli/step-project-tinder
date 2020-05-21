@@ -11,4 +11,8 @@ public class User {
     private final String password;
     private final Gender gender;
     private final String imageURL;
+
+    public String getAbsoluteURL(){
+        return String.format("user/?messageFrom=%s",this.userID.toString());//TODO not correct format.
+    }
 }

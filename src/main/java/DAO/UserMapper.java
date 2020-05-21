@@ -11,7 +11,7 @@ public interface UserMapper{
     String getAll = "SELECT * FROM USER";
     String getById = "SELECT * FROM USER WHERE ID = #{id}";
     String deleteById = "DELETE from USER WHERE ID = #{id}";
-    String insert = "INSERT INTO USER (USERNAME, PASSWORD, GENDER, IMAGEURL ) VALUES (#{username}, #{password}, #{gender}, #{imageURL})";
+    String insert = "INSERT INTO \"user\" (USERNAME, PASSWORD, GENDER, IMAGEURL ) VALUES (#{username}, #{password}, #{gender}, #{imageURL})";
     String update = "UPDATE USER SET USERNAME = #{username}, PASSWORD = #{password}, GENDER = #{gender}, IMAGEURL = #{imageURL} WHERE ID = #{id}";
 
 
@@ -42,6 +42,6 @@ public interface UserMapper{
     void deleteByID(UUID id);
 
     @Insert(insert)
-    @Options(keyProperty = "userID")
-    void insert(User student);
+    @Options(useGeneratedKeys = true, keyProperty = "userID")
+    void insert(User user);
 }
