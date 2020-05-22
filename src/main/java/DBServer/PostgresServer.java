@@ -20,15 +20,6 @@ import java.sql.SQLException;
 public class PostgresServer {
 
 
-    public Connection getConnection(String url, String name, String password){
-        try {
-            return DriverManager.getConnection(url, name, password);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException("connection error");
-        }
-    }
-
     public SqlSession createConnection(String url, String name, String password) {
         DataSource dataSource = PostgresServer.getDataSource(url, name, password);
         TransactionFactory factory = new JdbcTransactionFactory();

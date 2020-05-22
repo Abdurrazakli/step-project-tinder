@@ -34,28 +34,26 @@ public class LoginServlet extends HttpServlet {
         // check?=>HomeServlet,set cookie to => '/' : LoginServlet (error message);
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        String rememberME = req.getParameter("rememberME");
-        Optional<UUID> loggedInUserID = userService.authenticateUser(username, password);
-
+        System.out.println(username+" "+password);
+        Optional<String> loggedInUserID = userService.authenticateUser(username, password);
+        System.out.println(loggedInUserID.toString());
         if (loggedInUserID.isEmpty()){
-            messages.WARNING(resp,"Username or password is wrong!");
+            messages.WARNING(resp,"\"Username or password wrong!\"");
             resp.sendRedirect("/login/");
         }else {
 
-            addCookie(resp,loggedInUserID.get().toString(),rememberME);
+            addCookie(resp,loggedInUserID.get().toString());
 
-            messages.INFO(resp,String.format("Successfully registered in %s!",username));
+            messages.INFO(resp,"Success");
             resp.sendRedirect("/users/");
         }
     }
 
-    private void addCookie(HttpServletResponse resp, String userID, String rememberME) {
+    private void addCookie(HttpServletResponse resp, String userID) {
         Cookie cookie = new Cookie("id", userID);
         cookie.setHttpOnly(true);
         cookie.setPath("/");
-        if (rememberME.equals("false")) { //FIXME RememberME problem
-            throw new IllegalArgumentException("Not impl");
-        }
+
         resp.addCookie(cookie);
     }
 }

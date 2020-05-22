@@ -1,10 +1,11 @@
 package DAO;
 
+import Models.Gender;
 import Models.User;
 import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.type.JdbcType;
 
 import java.util.Collection;
-import java.util.Optional;
 import java.util.UUID;
 
 
@@ -18,7 +19,6 @@ public interface UserMapper{
     String getUserOneByOne = "SELECT id, username, gender,imageURL, password FROM \"user\" u\n" +
             "LEFT OUTER JOIN Liked l ON l.fromUser != u.id\n" +
             "WHERE 'bc1103d1-110c-4372-b5d6-8e4d9b2f7900'=l.\"user\" AND u.id !='bc1103d1-110c-4372-b5d6-8e4d9b2f7900' limit 1";
-
     @Select(getAll)
     @Results(value = {
             @Result(property = "userID",column = "id"),
@@ -31,13 +31,13 @@ public interface UserMapper{
 
     @Select(getById)
     @Results(value = {
-            @Result(property = "userID",column = "id"),
+            @Result(property = "userID",column = "id",javaType = UUID.class,id = true),
             @Result(property = "username",column = "username"),
             @Result(property = "password",column = "password"),
-            @Result(property = "gender",column = "gender"),
+            @Result(property = "gender",column = "gender",javaType = Gender.class),
             @Result(property = "imageURL",column = "imageURL")
     })
-    Optional<User> getById(UUID id);
+    User getById(UUID id);
 
     @Update(update)
     void update(User student);
@@ -51,10 +51,10 @@ public interface UserMapper{
 
     @Select(getBY)
     @Results(value = {
-            @Result(property = "userID",column = "id"),
+            @Result(property = "userID",column = "id",javaType = String.class,jdbcType = JdbcType.VARCHAR),
             @Result(property = "username",column = "username"),
             @Result(property = "password",column = "password"),
-            @Result(property = "gender",column = "gender"),
+            @Result(property = "gender",column = "gender",javaType = Gender.class),
             @Result(property = "imageURL",column = "imageURL")
     })
     User getBy(String username);
