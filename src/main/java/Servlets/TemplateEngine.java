@@ -35,7 +35,7 @@ public class TemplateEngine {
         return new TemplateEngine(path);
     }
 
-    public void render(String templateName, HashMap<String, Object> data, HttpServletResponse resp){
+    public void render( HttpServletResponse resp, String templateName, HashMap<String, Object> data){
         resp.setCharacterEncoding(String.valueOf(StandardCharsets.UTF_8));
         try(PrintWriter w = resp.getWriter()){
             config.getTemplate(templateName).process(data,w);
@@ -45,7 +45,7 @@ public class TemplateEngine {
         }
     }
 
-    public void render(String templateName,HttpServletResponse resp){
+    public void render(HttpServletResponse resp,String templateName){
         String fullPath = root_path.concat(templateName);
         try (PrintWriter w = resp.getWriter()){
             String content  = new BufferedReader(new FileReader(new File(fullPath)))

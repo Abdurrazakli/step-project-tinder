@@ -8,8 +8,9 @@ CREATE TABLE "user" ( id uuid DEFAULT uuid_generate_v4(),
                     );
 
 CREATE TABLE Messages (
-                          "from"  uuid         NOT NULL ,
-                          "to"    uuid         NOT NULL ,
+                          id uuid DEFAULT uuid_generate_v4(),
+                          "from"  uuid NOT NULL ,
+                          "to"    uuid NOT NULL ,
                           date    timestamp DEFAULT now(),
                           message VARCHAR(260) NOT NULL ,
                           FOREIGN KEY ("from") REFERENCES "user"(id),
@@ -20,5 +21,6 @@ CREATE TABLE Liked (  "user"   uuid,
                        fromUser uuid,
                        isLiked  bool DEFAULT NULL,
                        FOREIGN KEY ("user") REFERENCES "user"(id),
-                       FOREIGN KEY (fromUser) REFERENCES "user"(id)
+                       FOREIGN KEY (fromUser) REFERENCES "user"(id),
+                       PRIMARY KEY ("user",fromUser)
                    );

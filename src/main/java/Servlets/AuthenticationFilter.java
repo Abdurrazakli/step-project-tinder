@@ -3,6 +3,7 @@ package Servlets;
 
 import Services.UserService;
 import org.apache.ibatis.session.SqlSession;
+import utils.MessageService.MessageService;
 
 import javax.servlet.*;
 import javax.servlet.http.Cookie;
@@ -14,6 +15,7 @@ import java.util.UUID;
 
 public class AuthenticationFilter implements Filter {
     private final UserService service;
+    private final MessageService messages = new MessageService();
 
     public AuthenticationFilter(SqlSession session) {
         service = new UserService(session);
@@ -28,7 +30,9 @@ public class AuthenticationFilter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
         if (isHttp(req,resp) && isCorrectUser((HttpServletRequest) req) ) chain.doFilter(req,resp);
         HttpServletResponse response = (HttpServletResponse) resp;
-        response.sendRedirect("/login");
+
+        messages.WARNING(response,"Please Log In to continue!");
+        response.sendRedirect("/login/");
     }
 
     private boolean isCorrectUser(HttpServletRequest req) {
@@ -42,9 +46,9 @@ public class AuthenticationFilter implements Filter {
 
     private boolean checkCookie(Cookie cookie) {
         return cookie.getName().equals("id") &&
-         service.ifUserExists(
+         service.getUserByID(
                  UUID.fromString(cookie.getValue())
-         );
+         ).isPresent();
     }
 
     private boolean isHttp(ServletRequest req, ServletResponse resp) {

@@ -3,9 +3,8 @@ package Servlets;
 import Models.User;
 import Services.UserService;
 import org.apache.ibatis.session.SqlSession;
-import org.eclipse.jetty.servlet.Source;
+import utils.MessageService.MessageService;
 
-import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,14 +14,16 @@ import java.io.IOException;
 public class RegisterServlet extends HttpServlet {
     private final TemplateEngine engine;
     private final UserService service;
+    private final MessageService messages = new MessageService();
+
     public RegisterServlet(TemplateEngine engine, SqlSession session) {
         this.engine=engine;
         this.service = new UserService(session);
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        engine.render("signUp.ftl",resp);
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp){
+        engine.render(resp,"signUp.ftl");
     }
 
     @Override
@@ -32,9 +33,10 @@ public class RegisterServlet extends HttpServlet {
         String gender = req.getParameter("gender");
         String imageURL = req.getParameter("imageURL");
         User newUser = imageURL != null ? new User(username, password, gender, imageURL) : new User(username, password, gender);
-        if (service.registerUser(newUser)) {
+        if (service.authenticateAndRegisterUser(newUser)){
             resp.sendRedirect("/login/");
         } else {
+            messages.WARNING(resp,"Username was taken. Please choose another!");
             resp.sendRedirect("/register/");
         }
     }

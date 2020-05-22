@@ -24,7 +24,7 @@ public class ServerApp {
         Server server = new Server(8080);
         EnumSet<DispatcherType> ft = EnumSet.of(DispatcherType.REQUEST);
         ServletContextHandler handler = new ServletContextHandler();
-        DBSetup.migrate(URL,NAME,PASSWORD);                                   //Might be a problem. Two connection for migration and myBatis
+        DBSetup.migrate(URL,NAME,PASSWORD,true);                                   //Might be a problem. Two connection for migration and myBatis
         SqlSession session = dbserver.createConnection(URL, NAME, PASSWORD);
 
 //        Testing the connection+
