@@ -15,6 +15,9 @@ public interface UserMapper{
     String insert = "INSERT INTO \"user\" (USERNAME, PASSWORD, GENDER, IMAGEURL ) VALUES (#{username}, #{password}, #{gender}, #{imageURL})";
     String update = "UPDATE \"user\" SET USERNAME = #{username}, PASSWORD = #{password}, GENDER = #{gender}, IMAGEURL = #{imageURL} WHERE ID = #{id}";
     String getBY = "SELECT * FROM \"user\" WHERE USERNAME=#{username}";
+    String getUserOneByOne = "SELECT id, username, gender,imageURL, password FROM \"user\" u\n" +
+            "LEFT OUTER JOIN Liked l ON l.fromUser != u.id\n" +
+            "WHERE 'bc1103d1-110c-4372-b5d6-8e4d9b2f7900'=l.\"user\" AND u.id !='bc1103d1-110c-4372-b5d6-8e4d9b2f7900' limit 1";
 
     @Select(getAll)
     @Results(value = {
@@ -54,5 +57,16 @@ public interface UserMapper{
             @Result(property = "gender",column = "gender"),
             @Result(property = "imageURL",column = "imageURL")
     })
-    Optional<User> getBy(String username);
+    User getBy(String username);
+
+
+    @Select(getUserOneByOne)
+    @Results(value = {
+            @Result(property = "userID",column = "id"),
+            @Result(property = "username",column = "username"),
+            @Result(property = "password",column = "password"),
+            @Result(property = "gender",column = "gender"),
+            @Result(property = "imageURL",column = "imageURL")
+    })
+    User getUserOneByOne(UUID id);
 }

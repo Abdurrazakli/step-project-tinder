@@ -9,13 +9,15 @@ import java.util.Optional;
 import java.util.UUID;
 
 public class UserService {
+    private final SqlSession session;
     UserMapper dao;
     public UserService(SqlSession session) {
         dao =session.getMapper(UserMapper.class);
+        this.session=session;
     }
 
     public Optional<UUID> authenticateUser(String username, String password) {
-        Optional<User> user = dao.getBy(username);
+        Optional<User> user = Optional.of(dao.getBy(username));
         return  user.isPresent() && user.get().getPassword().equals(password) ? Optional.of(user.get().getUserID()) : Optional.empty();
     }
 
@@ -27,11 +29,12 @@ public class UserService {
     }
 
     private boolean checkUserAuthentication(String newUserName) {
-        return dao.getBy(newUserName).isPresent();
+        return dao.getBy(newUserName) != null;
     }
 
     public void registerUser(User newUser) {
         dao.insert(newUser);
+        session.commit();
     }
 
     public Optional<User> getUserByID(UUID id){

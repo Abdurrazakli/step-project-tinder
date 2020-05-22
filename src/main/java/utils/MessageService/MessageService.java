@@ -24,7 +24,7 @@ public class MessageService {
 
     public void ERROR(HttpServletResponse resp, String message){
         Cookie messages = new Cookie("messages", message);// My cookie
-        Cookie tag = new Cookie("tag",ERROR);
+        Cookie tag = new Cookie("tag",ERROR); //<div class=" alert type="Warr"">message</div>
         setup(resp,messages,tag);
     }
 

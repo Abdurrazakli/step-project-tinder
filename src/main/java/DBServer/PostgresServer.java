@@ -38,7 +38,6 @@ public class PostgresServer {
         configuration.addMapper(UserMapper.class);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
         return sqlSessionFactory.openSession();
-
     }
 
     private static DataSource getDataSource(String URL, String NAME, String PASSWORD){

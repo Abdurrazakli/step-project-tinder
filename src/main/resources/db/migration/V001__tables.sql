@@ -18,9 +18,9 @@ CREATE TABLE Messages (
                       );
 
 CREATE TABLE Liked (  "user"   uuid,
-                       fromUser uuid,
-                       isLiked  bool DEFAULT NULL,
+                       toUser uuid,
+                       isLiked  bool NOT NULL ,
                        FOREIGN KEY ("user") REFERENCES "user"(id),
-                       FOREIGN KEY (fromUser) REFERENCES "user"(id),
-                       PRIMARY KEY ("user",fromUser)
+                       FOREIGN KEY (toUser) REFERENCES "user"(id),
+                       PRIMARY KEY ("user",toUser)
                    );

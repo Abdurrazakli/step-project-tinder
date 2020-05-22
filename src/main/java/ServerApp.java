@@ -12,6 +12,7 @@ import org.eclipse.jetty.servlet.ServletHolder;
 
 import javax.servlet.DispatcherType;
 import java.util.EnumSet;
+import java.util.Optional;
 
 public class ServerApp {
     private final static PostgresServer dbserver = new PostgresServer();
@@ -24,7 +25,7 @@ public class ServerApp {
         Server server = new Server(8080);
         EnumSet<DispatcherType> ft = EnumSet.of(DispatcherType.REQUEST);
         ServletContextHandler handler = new ServletContextHandler();
-        DBSetup.migrate(URL,NAME,PASSWORD,true);                                   //Might be a problem. Two connection for migration and myBatis
+        DBSetup.migrate(URL,NAME,PASSWORD);                                   //Might be a problem. Two connection for migration and myBatis
         SqlSession session = dbserver.createConnection(URL, NAME, PASSWORD);
 
 //        Testing the connection+
@@ -39,8 +40,7 @@ public class ServerApp {
         handler.addServlet(new ServletHolder(new RegisterServlet(engine,session)),"/register/");
         handler.addServlet(new ServletHolder(new LoginServlet(engine,session)),"/login/");
         handler.addFilter(new FilterHolder(new AuthenticationFilter(session)),"/",ft);
-
-
+        //Optional.ofNullable(null);
         server.setHandler(handler);
         server.start();
         server.join();

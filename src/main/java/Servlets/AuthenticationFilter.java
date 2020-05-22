@@ -45,6 +45,8 @@ public class AuthenticationFilter implements Filter {
     }
 
     private boolean checkCookie(Cookie cookie) {
+        //id = dfsdfsdf
+        //message = fdsfsdfsdfds
         return cookie.getName().equals("id") &&
          service.getUserByID(
                  UUID.fromString(cookie.getValue())

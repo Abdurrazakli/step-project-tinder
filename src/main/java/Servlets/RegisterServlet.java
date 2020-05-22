@@ -33,6 +33,7 @@ public class RegisterServlet extends HttpServlet {
         String gender = req.getParameter("gender");
         String imageURL = req.getParameter("imageURL");
         User newUser = imageURL != null ? new User(username, password, gender, imageURL) : new User(username, password, gender);
+
         if (service.authenticateAndRegisterUser(newUser)){
             resp.sendRedirect("/login/");
         } else {
