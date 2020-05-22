@@ -68,5 +68,5 @@ public interface UserMapper{
             @Result(property = "gender",column = "gender"),
             @Result(property = "imageURL",column = "imageURL")
     })
-    User getUserOneByOne(UUID id);
+    User getUserOneByOne(String id);
 }

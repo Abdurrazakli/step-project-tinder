@@ -26,15 +26,17 @@
                     <h3 class="mb-0 text-truncated">User name</h3>
                     <br>
                 </div>
-                <a href="/likeordislike-user/?user=id?like=(1)">Button Like</a>
-                <a href="/likeordislike-user/?user=id?like=(0)">Button Dislike</a>
 <!-- Like or dislike design! -->
+                <form method="post" action="/users/?action=dislike">
                 <div class="col-12 col-lg-6">
-                    <button type="button" class="btn btn-outline-danger btn-block"><span class="fa fa-times"></span> Dislike</button>
+                    <button type="submit" class="btn btn-outline-danger btn-block"><span class="fa fa-times"></span> Dislike</button>
                 </div>
+                </form>
+                <form method="post" action="/users/?action=like">
                 <div class="col-12 col-lg-6">
                     <button type="submit" class="btn btn-outline-success btn-block"><span class="fa fa-heart"></span> Like</button>
                 </div>
+                </form>
 
                 <!--/col-->
             </div>

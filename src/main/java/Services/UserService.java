@@ -45,5 +45,8 @@ public class UserService {
         return Optional.ofNullable(dao.getById(id));
     }
 
+    public User getANewLove(String userid) {
+        return dao.getUserOneByOne(userid);
+    }
 
 }
