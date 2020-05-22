@@ -18,7 +18,7 @@ public interface UserMapper{
     String getBY = "SELECT * FROM \"user\" WHERE USERNAME=#{username}";
     String getUserOneByOne = "SELECT id, username, gender,imageURL, password FROM \"user\" u\n" +
             "LEFT OUTER JOIN Liked l ON l.toUser != u.id\n" +
-            "WHERE 'bc1103d1-110c-4372-b5d6-8e4d9b2f7900'=l.\"user\" AND u.id !='bc1103d1-110c-4372-b5d6-8e4d9b2f7900' limit 1";
+            "WHERE #{id}=l.\"user\" AND u.id !=#{id} limit 1";
     @Select(getAll)
     @Results(value = {
             @Result(property = "userID",column = "id"),
@@ -51,7 +51,7 @@ public interface UserMapper{
 
     @Select(getBY)
     @Results(value = {
-            @Result(property = "userID",column = "id",javaType = String.class,jdbcType = JdbcType.VARCHAR),
+            @Result(property = "userID",column = "id"),
             @Result(property = "username",column = "username"),
             @Result(property = "password",column = "password"),
             @Result(property = "gender",column = "gender",javaType = Gender.class),

@@ -37,11 +37,11 @@ public class ServerApp {
         SqlSession session = dbserver.createConnection(URL, NAME, PASSWORD);
 
 //        Testing the connection+
-        UserMapper mapper = session.getMapper(UserMapper.class);
-        User efqan = mapper.getBy("efqan");
-        System.out.println(efqan.toString());
-        session.commit();
-        session.close();
+//        UserMapper mapper = session.getMapper(UserMapper.class);
+//        User efqan = mapper.getBy("efqan");
+//        System.out.println(efqan.toString());
+//        session.commit();
+//        session.close();
 //        testing ends
 
         handler.addServlet(new ServletHolder(new UsersServlet(engine,session)),"/users/");
