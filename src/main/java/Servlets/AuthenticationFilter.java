@@ -28,6 +28,7 @@ public class AuthenticationFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
+        System.out.println("Filter worked!!!");
         if (isHttp(req,resp) && isCorrectUser((HttpServletRequest) req) ) chain.doFilter(req,resp);
         HttpServletResponse response = (HttpServletResponse) resp;
 
@@ -49,7 +50,7 @@ public class AuthenticationFilter implements Filter {
         //message = fdsfsdfsdfds
         return cookie.getName().equals("id") &&
          service.getUserByID(
-                 UUID.fromString(cookie.getValue())
+                 cookie.getValue()
          ).isPresent();
     }
 

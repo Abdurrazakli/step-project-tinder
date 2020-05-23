@@ -1,8 +1,9 @@
 CREATE TABLE "user" ( id varchar DEFAULT uuid_generate_v4(),
                       username VARCHAR(25) NOT NULL ,
                       password VARCHAR(35) NOT NULL ,
-                      gender VARCHAR(1),
+                      gender VARCHAR(1) ,
                       imageURL VARCHAR(50) NOT NULL ,
+                      lastLogin varchar ,
                       PRIMARY KEY (id)
                     );
 
@@ -10,7 +11,7 @@ CREATE TABLE Messages (
                           id varchar DEFAULT uuid_generate_v4(),
                           "from"  varchar NOT NULL ,
                           "to"    varchar NOT NULL ,
-                          date    timestamp DEFAULT now(),
+                          date    varchar DEFAULT now(),
                           message VARCHAR(260) NOT NULL ,
                           FOREIGN KEY ("from") REFERENCES "user"(id),
                           FOREIGN KEY ("to") REFERENCES "user"(id)

@@ -3,9 +3,9 @@ package DAO;
 import Models.Gender;
 import Models.User;
 import org.apache.ibatis.annotations.*;
-import org.apache.ibatis.type.JdbcType;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -14,11 +14,11 @@ public interface UserMapper{
     String getById = "SELECT * FROM \"user\" WHERE ID = #{id}";
     String deleteById = "DELETE from \"user\" WHERE ID = #{id}";
     String insert = "INSERT INTO \"user\" (USERNAME, PASSWORD, GENDER, IMAGEURL ) VALUES (#{username}, #{password}, #{gender}, #{imageURL})";
-    String update = "UPDATE \"user\" SET USERNAME = #{username}, PASSWORD = #{password}, GENDER = #{gender}, IMAGEURL = #{imageURL} WHERE ID = #{id}";
+    String update = "UPDATE \"user\" SET USERNAME = #{username}, PASSWORD = #{password}, GENDER = #{gender}, IMAGEURL = #{imageURL} WHERE ID = #{userID}";
     String getBY = "SELECT * FROM \"user\" WHERE USERNAME=#{username}";
     String getUserOneByOne = "SELECT id, username, gender,imageURL, password FROM \"user\" u\n" +
             "LEFT OUTER JOIN Liked l ON l.toUser != u.id\n" +
-            "WHERE #{id}=l.\"user\" AND u.id !=#{id} limit 1";
+            "WHERE #{userID}=l.\"user\" AND u.id !=#{userID} limit 1";
     @Select(getAll)
     @Results(value = {
             @Result(property = "userID",column = "id"),
@@ -37,13 +37,13 @@ public interface UserMapper{
             @Result(property = "gender",column = "gender",javaType = Gender.class),
             @Result(property = "imageURL",column = "imageURL")
     })
-    User getById(UUID id);
+    User getById(String id);
 
     @Update(update)
     void update(User student);
 
     @Delete(deleteById)
-    void deleteByID(UUID id);
+    void deleteByID(String id);
 
     @Insert(insert)
     @Options(useGeneratedKeys = true, keyProperty = "userID")
@@ -68,5 +68,20 @@ public interface UserMapper{
             @Result(property = "gender",column = "gender"),
             @Result(property = "imageURL",column = "imageURL")
     })
-    User getUserOneByOne(String id);
+    User getUserOneByOne(String userID);
+
+
+    @Select({"SELECT id,username,gender,imageurl,password FROM liked l\n" +
+            "LEFT OUTER JOIN \"user\" u ON l.touser = u.id\n" +
+            "WHERE l.\"user\" = #{userID} AND l.isliked=true;\n"})
+    @Results(value = {
+            @Result(property = "userID",column = "id"),
+            @Result(property = "username",column = "username"),
+            @Result(property = "password",column = "password"),
+            @Result(property = "lastLogin",column = "lastLogin"),
+            @Result(property = "gender",column = "gender"),
+            @Result(property = "imageURL",column = "imageURL")
+    })
+    List<User> getLikedUser(String userID);
+
 }

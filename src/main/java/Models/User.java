@@ -2,6 +2,8 @@ package Models;
 
 import lombok.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @ToString
@@ -13,6 +15,7 @@ public class User {
     private String username;
     private String password;
     private Gender gender;
+    private LocalDateTime lastLogin;
     private String imageURL="https://i.imgur.com/EvEgy19.jpg";
 
     public User(){}
@@ -34,5 +37,14 @@ public class User {
     public String getAbsoluteURL(){
         return String.format("user/message/?messageTo=%s",this.userID.toString());//TODO not correct format.
     }
+
+    public void setLocalDateTImeLastLogin(LocalDateTime time){
+        this.lastLogin=time;
+    }
+
+    public String getlastLogin(String rowDate){
+        return String.valueOf(this.lastLogin);
+    }
+
     // Liked Users List = >>>
 }

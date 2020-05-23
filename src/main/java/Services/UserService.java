@@ -4,8 +4,8 @@ import DAO.UserMapper;
 import Models.User;
 import org.apache.ibatis.session.SqlSession;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
-import java.util.UUID;
 
 public class UserService {
     private final SqlSession session;
@@ -19,6 +19,13 @@ public class UserService {
         Optional<User> user = Optional.ofNullable(dao.getBy(username));
         System.out.println(user);
         if (user.isPresent() && user.get().getPassword().equals(password)){
+            User userUpdated = user.get();
+            System.out.println("I came here");
+
+            userUpdated.setLocalDateTImeLastLogin(LocalDateTime.now());
+            System.out.println(userUpdated);
+            dao.update(userUpdated);
+            session.commit();
             return Optional.of(user.get().getUserID());
         }else return Optional.empty();
 
@@ -41,7 +48,7 @@ public class UserService {
         session.commit();
     }
 
-    public Optional<User> getUserByID(UUID id){
+    public Optional<User> getUserByID(String id){
         return Optional.ofNullable(dao.getById(id));
     }
 
