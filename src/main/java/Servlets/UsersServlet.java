@@ -31,7 +31,7 @@ public class UsersServlet extends HttpServlet {
                         .orElseThrow(()->new RuntimeException("It is not possible but user logged in without user id")).getValue();
         User potentialLover = service.getANewLove(user_id);
         HashMap<String, Object> data = new HashMap<>();
-        data.put("lover",potentialLover);
+        data.put("loverUser",potentialLover);
         engine.render(resp,pageTemplate,data);
     }
 
