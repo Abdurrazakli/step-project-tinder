@@ -31,7 +31,7 @@ public interface UserMapper{
 
     @Select(getById)
     @Results(value = {
-            @Result(property = "userID",column = "id",javaType = UUID.class,id = true),
+            @Result(property = "userID",column = "id",id = true),
             @Result(property = "username",column = "username"),
             @Result(property = "password",column = "password"),
             @Result(property = "gender",column = "gender",javaType = Gender.class),
@@ -55,6 +55,7 @@ public interface UserMapper{
             @Result(property = "username",column = "username"),
             @Result(property = "password",column = "password"),
             @Result(property = "gender",column = "gender",javaType = Gender.class),
+            @Result(property = "lastLogin",column = "lastLogin",typeHandler = org.apache.ibatis.type.LocalDateTimeTypeHandler.class),
             @Result(property = "imageURL",column = "imageURL")
     })
     User getBy(String username);
@@ -66,6 +67,7 @@ public interface UserMapper{
             @Result(property = "username",column = "username"),
             @Result(property = "password",column = "password"),
             @Result(property = "gender",column = "gender"),
+            @Result(property = "lastLogin",column = "lastLogin",typeHandler = org.apache.ibatis.type.LocalDateTimeTypeHandler.class),
             @Result(property = "imageURL",column = "imageURL")
     })
     User getUserOneByOne(String userID);
@@ -80,7 +82,9 @@ public interface UserMapper{
             @Result(property = "password",column = "password"),
             @Result(property = "lastLogin",column = "lastLogin"),
             @Result(property = "gender",column = "gender"),
-            @Result(property = "imageURL",column = "imageURL")
+            @Result(property = "imageURL",column = "imageURL"),
+            @Result(property = "lastLogin",column = "lastLogin",typeHandler = org.apache.ibatis.type.LocalDateTimeTypeHandler.class)
+
     })
     List<User> getLikedUser(String userID);
 
