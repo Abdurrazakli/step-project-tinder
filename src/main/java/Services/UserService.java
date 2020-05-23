@@ -22,7 +22,7 @@ public class UserService {
             User userUpdated = user.get();
             System.out.println("I came here");
 
-            userUpdated.setLocalDateTImeLastLogin(LocalDateTime.now());
+            userUpdated.setLastLogin(LocalDateTime.now());
             System.out.println(userUpdated);
             dao.update(userUpdated);
             session.commit();

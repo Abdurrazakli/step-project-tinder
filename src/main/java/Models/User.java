@@ -37,14 +37,4 @@ public class User {
     public String getAbsoluteURL(){
         return String.format("user/message/?messageTo=%s",this.userID.toString());//TODO not correct format.
     }
-
-    public void setLocalDateTImeLastLogin(LocalDateTime time){
-        this.lastLogin=time;
-    }
-
-    public String getlastLogin(String rowDate){
-        return String.valueOf(this.lastLogin);
-    }
-
-    // Liked Users List = >>>
 }

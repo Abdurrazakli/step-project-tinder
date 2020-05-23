@@ -3,7 +3,7 @@ CREATE TABLE "user" ( id varchar DEFAULT uuid_generate_v4(),
                       password VARCHAR(35) NOT NULL ,
                       gender VARCHAR(1) ,
                       imageURL VARCHAR(50) NOT NULL ,
-                      lastLogin varchar ,
+                      lastLogin timestamp without time zone ,
                       PRIMARY KEY (id)
                     );
 

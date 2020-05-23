@@ -14,7 +14,7 @@ public interface UserMapper{
     String getById = "SELECT * FROM \"user\" WHERE ID = #{id}";
     String deleteById = "DELETE from \"user\" WHERE ID = #{id}";
     String insert = "INSERT INTO \"user\" (USERNAME, PASSWORD, GENDER, IMAGEURL ) VALUES (#{username}, #{password}, #{gender}, #{imageURL})";
-    String update = "UPDATE \"user\" SET USERNAME = #{username}, PASSWORD = #{password}, GENDER = #{gender}, IMAGEURL = #{imageURL} WHERE ID = #{userID}";
+    String update = "UPDATE \"user\" SET USERNAME = #{username}, PASSWORD = #{password}, GENDER = #{gender}, IMAGEURL = #{imageURL}, LASTLOGIN=#{lastLogin,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler} WHERE ID = #{userID}";
     String getBY = "SELECT * FROM \"user\" WHERE USERNAME=#{username}";
     String getUserOneByOne = "SELECT id, username, gender,imageURL, password FROM \"user\" u\n" +
             "LEFT OUTER JOIN Liked l ON l.toUser != u.id\n" +
@@ -39,7 +39,7 @@ public interface UserMapper{
     })
     User getById(String id);
 
-    @Update(update)
+    @Update({update})
     void update(User student);
 
     @Delete(deleteById)
