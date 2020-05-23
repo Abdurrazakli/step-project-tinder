@@ -1,6 +1,7 @@
 package DBServer;
 
 
+import DAO.MessageWrapper;
 import DAO.UserMapper;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.ibatis.mapping.Environment;
@@ -27,6 +28,7 @@ public class PostgresServer {
                 new Environment("development", factory, dataSource);
         Configuration configuration = new Configuration(environment);
         configuration.addMapper(UserMapper.class);
+        configuration.addMapper(MessageWrapper.class);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
         return sqlSessionFactory.openSession();
     }

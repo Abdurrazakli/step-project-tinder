@@ -4,6 +4,7 @@ import Models.Gender;
 import Models.User;
 import lombok.extern.log4j.Log4j2;
 import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.type.JdbcType;
 
 import java.util.Collection;
 import java.util.List;
@@ -57,7 +58,7 @@ public interface UserMapper{
             @Result(property = "username",column = "username"),
             @Result(property = "password",column = "password"),
             @Result(property = "gender",column = "gender",javaType = Gender.class),
-            @Result(property = "lastLogin",column = "lastLogin",typeHandler = org.apache.ibatis.type.LocalDateTimeTypeHandler.class),
+            @Result(property = "lastLogin",column = "lastLogin",javaType = java.time.LocalDateTime.class, jdbcType = JdbcType.TIMESTAMP, typeHandler = org.apache.ibatis.type.LocalDateTimeTypeHandler.class),
             @Result(property = "imageURL",column = "imageURL")
     })
     User getBy(String username);
@@ -69,24 +70,22 @@ public interface UserMapper{
             @Result(property = "username",column = "username"),
             @Result(property = "password",column = "password"),
             @Result(property = "gender",column = "gender"),
-            @Result(property = "lastLogin",column = "lastLogin",typeHandler = org.apache.ibatis.type.LocalDateTimeTypeHandler.class),
+            @Result(property = "lastLogin",column = "lastLogin",javaType = java.time.LocalDateTime.class, jdbcType = JdbcType.TIMESTAMP, typeHandler = org.apache.ibatis.type.LocalDateTimeTypeHandler.class),
             @Result(property = "imageURL",column = "imageURL")
     })
     User getUserOneByOne(String userID);
 
 
-    @Select({"SELECT id,username,gender,imageurl,password FROM liked l\n" +
+    @Select({"SELECT id,username,gender,imageurl,password, lastLogin FROM liked l\n" +
             "LEFT OUTER JOIN \"user\" u ON l.touser = u.id\n" +
             "WHERE l.\"user\" = #{userID} AND l.isliked=true;\n"})
     @Results(value = {
             @Result(property = "userID",column = "id"),
             @Result(property = "username",column = "username"),
             @Result(property = "password",column = "password"),
-            @Result(property = "lastLogin",column = "lastLogin"),
             @Result(property = "gender",column = "gender"),
             @Result(property = "imageURL",column = "imageURL"),
-            @Result(property = "lastLogin",column = "lastLogin",typeHandler = org.apache.ibatis.type.LocalDateTimeTypeHandler.class)
-
+            @Result(property = "lastLogin",column = "lastLogin",javaType = java.time.LocalDateTime.class, jdbcType = JdbcType.TIMESTAMP, typeHandler = org.apache.ibatis.type.LocalDateTimeTypeHandler.class)
     })
     List<User> getLikedUser(String userID);
 

@@ -1,24 +1,16 @@
 import DAO.UserMapper;
-import DBServer.DBSetup;
 import DBServer.PostgresServer;
-import Models.Gender;
 import Models.User;
 import Servlets.*;
 import org.apache.ibatis.session.SqlSession;
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.FilterHolder;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
 import javax.servlet.DispatcherType;
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
-import java.util.Optional;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
 
 public class ServerApp {
     private final static PostgresServer dbserver = new PostgresServer();
@@ -48,12 +40,13 @@ public class ServerApp {
 //        testing ends
 
 
-
+        handler.addServlet(new ServletHolder(new StaticServlet("css")), "/css/*");
+        handler.addServlet(new ServletHolder(new ChatServlet(engine,session)),"/chat/");
         handler.addServlet(new ServletHolder(new LikedUserServlet(engine,session)),"/users/liked/");
         handler.addServlet(new ServletHolder(new UsersServlet(engine,session)),"/users/");
         handler.addServlet(new ServletHolder(new RegisterServlet(engine,session)),"/register/");
         handler.addServlet(new ServletHolder(new LoginServlet(engine,session)),"/login/");
-        handler.addFilter(new FilterHolder(new AuthenticationFilter(session)),"/users",ft);
+        handler.addFilter(new FilterHolder(new AuthenticationFilter(session)),"/",ft);
 
         server.setHandler(handler);
         server.start();

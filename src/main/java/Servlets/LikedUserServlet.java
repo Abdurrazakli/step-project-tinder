@@ -42,7 +42,7 @@ public class LikedUserServlet extends HttpServlet {
             List<User> allLikedUsers = service.getAllLikedUsers(user.get().getValue());
             log.info(allLikedUsers.toString());
             data.put("likedUsers",allLikedUsers);
-            engin.render(resp,"people-list.html",data);
+            engin.render(resp,"people-list.ftl",data);
         }
     }
 

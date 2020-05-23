@@ -4,7 +4,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.UUID;
+import java.time.Period;
 
 @ToString
 @Getter
@@ -34,7 +34,13 @@ public class User {
         this.gender=Gender.valueOf(gender);
     } //image not
 
-    public String getAbsoluteURL(){
-        return String.format("user/message/?messageTo=%s",this.userID.toString());//TODO not correct format.
+    public String slug(){
+        return this.userID;
+    }
+    public String prettyLastLogin(){
+        return String.valueOf(this.lastLogin.toLocalDate());
+    }
+    public int daysAgo(){
+        return Period.between(this.lastLogin.toLocalDate(),LocalDateTime.now().toLocalDate()).getDays();
     }
 }
