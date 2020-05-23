@@ -22,17 +22,17 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-12 col-lg-12 col-md-12 text-center">
-                    <img src="https://robohash.org/68.186.255.198.png" alt="" class="mx-auto rounded-circle img-fluid">
-                    <h3 class="mb-0 text-truncated">User name</h3>
+                    <img src="${loverUser.imageURL}" alt="" class="mx-auto rounded-circle img-fluid">
+                    <h3 class="mb-0 text-truncated">${loverUser.username}</h3>
                     <br>
                 </div>
 <!-- Like or dislike design! -->
-                <form method="post" action="/users/?action=dislike">
+                <form method="post" action="/users/?id=${loverUser.userID}&action=dislike">
                 <div class="col-12 col-lg-6">
                     <button type="submit" class="btn btn-outline-danger btn-block"><span class="fa fa-times"></span> Dislike</button>
                 </div>
                 </form>
-                <form method="post" action="/users/?action=like">
+                <form method="post" action="/users/?id=${loverUser.userID}&action=like">
                 <div class="col-12 col-lg-6">
                     <button type="submit" class="btn btn-outline-success btn-block"><span class="fa fa-heart"></span> Like</button>
                 </div>
