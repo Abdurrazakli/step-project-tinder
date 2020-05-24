@@ -34,7 +34,7 @@ public class UsersServlet extends HttpServlet {
         final String user_id = cookieService.fetchUserId(req.getCookies());
 
         Optional<User> potentialLover = service.getANewLove(user_id);
-        if(!potentialLover.isEmpty()){
+        if(!potentialLover.equals(Optional.empty())){
         HashMap<String, Object> data = new HashMap<>();
         data.put("loverUser",potentialLover.get());
         log.debug("Lover found",potentialLover);

@@ -18,15 +18,14 @@ public class ServerApp {
 //    private final static String NAME = "root";
 //    private final static String PASSWORD = "efqan1999";
 
-   /* private final static String URL = org.adilEfqan.tinder.HerokuENV.JDBC_URL();
+    private final static String URL = org.adilEfqan.tinder.HerokuENV.JDBC_URL();
     private final static String NAME = org.adilEfqan.tinder.HerokuENV.JDBC_USERNAME();
     private final static String PASSWORD = org.adilEfqan.tinder.HerokuENV.JDBC_PASSWORD();
-*/
 
-    private final static String URL = "jdbc:postgresql://ec2-54-195-247-108.eu-west-1.compute.amazonaws.com:5432/d6953kdjrm3v1c";
+ /*   private final static String URL = "jdbc:postgresql://ec2-54-195-247-108.eu-west-1.compute.amazonaws.com:5432/d6953kdjrm3v1c";
     private final static String NAME = "kgdebzmkjzrjyg";
     private final static String PASSWORD = "55230058b15e4f8e18a9b543cd053afe105413d85b996e6872458bf2030ae99f";
-    private final static TemplateEngine engine = new TemplateEngine("./src/main/resources/templates/");
+*/    private final static TemplateEngine engine = new TemplateEngine("./src/main/resources/templates/");
 
     public static void main(String[] args) throws Exception {
         Server server = new Server(8080);

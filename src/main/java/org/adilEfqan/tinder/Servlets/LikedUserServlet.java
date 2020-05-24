@@ -34,7 +34,7 @@ public class LikedUserServlet extends HttpServlet {
         Optional<Cookie> user = Arrays.stream(req.getCookies())
                 .filter(this::checkCookie)
                 .findFirst();
-        if (user.isEmpty()){
+        if (user.equals(Optional.empty())){
             System.out.println("User not exists");
             log.warn("User not exists");
             resp.sendRedirect("/login/");

@@ -5,6 +5,7 @@ import org.adilEfqan.tinder.Services.UserService;
 import org.apache.ibatis.session.SqlSession;
 import org.adilEfqan.tinder.utils.MessageService.MessageService;
 
+
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -36,7 +37,7 @@ public class LoginServlet extends HttpServlet {
         System.out.println(username+" "+password);
         Optional<String> loggedInUserID = userService.authenticateUser(username, password);
         System.out.println(loggedInUserID.toString());
-        if (loggedInUserID.isEmpty()){
+        if (loggedInUserID.get().equals(Optional.empty())){
             messages.WARNING(resp,"\"Username or password wrong!\"");
             resp.sendRedirect("/login/");
         }else {
