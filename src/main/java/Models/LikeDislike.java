@@ -8,7 +8,7 @@ import lombok.*;
 @EqualsAndHashCode
 @ToString
 public class LikeDislike {
-    private final String currentUserID;
-    private final String toUserID;
-    private final boolean isLiked;
+    private String currentUserID;
+    private String toUserID;
+    private boolean isLiked;
 }
