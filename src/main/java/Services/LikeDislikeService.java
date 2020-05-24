@@ -22,11 +22,8 @@ public class LikeDislikeService {
     public void actBetween(String userId, String toUserID, String action) {
         boolean isLiked = isLike(action);
         LikeDislike likeDislike = new LikeDislike(userId, toUserID, isLiked);
-        log.debug(String.format("%s %s for %s",userId,action,toUserID));
         log.debug(likeDislike);
-
         likeMapper.insertToLike(likeDislike);
-        log.debug(String.format("%s %s for %s",userId,action,toUserID));
     }
 
     private boolean isLike(String action) {
