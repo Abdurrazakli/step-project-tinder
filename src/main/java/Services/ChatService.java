@@ -20,5 +20,6 @@ public class ChatService {
 
     public void insertMessage(Message newMessage) {
         mapper.insert(newMessage);
+        session.commit();
     }
 }

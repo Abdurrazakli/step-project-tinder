@@ -36,7 +36,7 @@ public class UsersServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final String user_id = cookieService.fetchUserId(req.getCookies());
-
+        log.warn("chat servlet do get running...");
         Optional<User> potentialLover = service.getANewLove(user_id);
         if(!potentialLover.isEmpty()){
         HashMap<String, Object> data = new HashMap<>();

@@ -70,7 +70,6 @@
 
                             </#if>
                         </#list>
-
                     </ul>
                 </div>
                 <div class="col-md-12 p-2 msg-box border border-primary">

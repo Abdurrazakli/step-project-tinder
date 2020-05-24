@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
+@WebServlet(name = "ChatServlet")
 public class ChatServlet extends HttpServlet {
     private final TemplateEngine engine;
     private final ChatService chatService;
@@ -68,16 +70,13 @@ public class ChatServlet extends HttpServlet {
         String sendTo = req.getParameter("sendTo");
         String message = req.getParameter("message");
         String loggedUser = cookieService.fetchUserId(req.getCookies());
+        log.warn("Chat servlet post working...");
 
         Message newMessage = new Message(loggedUser, sendTo, message);
 
         chatService.insertMessage(newMessage);
         resp.sendRedirect(String.format("/chat/?messageTo=%s",sendTo));
-
-
     }
-
-
 
     private boolean checkCookie(Cookie cookie) {
         return cookie.getName().equals("id");

@@ -28,8 +28,9 @@
                     <div class="table-container">
                         <table class="table-users table" border="0">
                             <tbody>
-                                <tr>
+
                                 <#list likedUsers as user>
+                                    <tr>
                                         <td width="10">
                                             <div class="avatar-img">
                                                 <img class="img-circle" style="width:550%;" src="${user.imageURL}" />  
@@ -39,17 +40,20 @@
                                             ${user.username}
                                         </td>
                                         <td  class="align-middle">
-                                            Last Login:  ${user.prettyLastLogin()}<br><small class="text-muted">${user.daysAgo()}</small>
+                                            Last Login:  ${user.prettyLastLogin()}<br><small class="text-muted">${user.daysAgo()} days ago</small>
                                         </td>
                                         <td>
-                                            <form method="post" action="/chat/?messageTo=${user.slug()}">
+                                            <form method="post" action="?messageTo=${user.slug()}">
                                                 <div class="col-12 col-lg-6">
                                                     <button type="submit" class="btn btn-outline-success btn-block"><span class="fa fa-message"></span> Send Message</button>
                                                 </div>
                                             </form>
                                         </td>
-                                </#list>
                                 </tr>
+                                </#list>
+
+
+
                             </tbody>
                         </table>
                     </div>

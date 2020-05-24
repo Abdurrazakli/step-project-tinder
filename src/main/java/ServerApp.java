@@ -46,6 +46,7 @@ public class ServerApp {
 //        System.out.println(mapper.getAll().toString());
 
 
+        handler.addServlet(new ServletHolder(new StaticServlet("css")), "/login/css/*");
         handler.addServlet(new ServletHolder(new StaticServlet("css")), "/users/liked/css/*");
         handler.addServlet(new ServletHolder(new StaticServlet("css")), "/chat/css/*");
         handler.addServlet(new ServletHolder(new StaticServlet("css")), "/users/css/*");

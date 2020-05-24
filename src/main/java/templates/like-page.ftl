@@ -37,7 +37,6 @@
                     <button type="submit" class="btn btn-outline-success btn-block"><span class="fa fa-heart"></span> Like</button>
                 </div>
                 </form>
-
                 <!--/col-->
             </div>
             <!--/row-->

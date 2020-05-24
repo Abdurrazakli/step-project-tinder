@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -44,6 +45,13 @@ public class LikedUserServlet extends HttpServlet {
             data.put("likedUsers",allLikedUsers);
             engin.render(resp,"people-list.ftl",data);
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("I am here!");
+        String messageTo = req.getParameter("messageTo");
+        resp.sendRedirect(String.format("/chat/?messageTo=%s",messageTo));
     }
 
     private boolean checkCookie(Cookie cookie) {
