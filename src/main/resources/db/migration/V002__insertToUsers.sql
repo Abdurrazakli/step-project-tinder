@@ -1,4 +1,4 @@
-INSERT INTO public."user" (username, password, gender, imageurl, lastlogin) VALUES ('nata', 'test', 'F', 'qlamurniyFoto', null);
-INSERT INTO public."user" (username, password, gender, imageurl, lastlogin) VALUES ('efqan', 'test', 'M', 'hfjhdfjhfjd', null);
-INSERT INTO public."user" (username, password, gender, imageurl, lastlogin) VALUES ('ayka', 'test', 'F', 'yaxciQizinFotosuOlmur', null);
-INSERT INTO public."user" (username, password, gender, imageurl, lastlogin) VALUES ('adil', 'test', 'M', 'dsdsd', null);
+INSERT INTO public."user" (username, password, gender, imageurl, lastlogin) VALUES ('nata', 'test', 'F', 'https://bellfund.ca/wp-content/uploads/2018/03/demo-user.jpg', null);
+INSERT INTO public."user" (username, password, gender, imageurl, lastlogin) VALUES ('efqan', 'test', 'M', 'https://bellfund.ca/wp-content/uploads/2018/03/demo-user.jpg', null);
+INSERT INTO public."user" (username, password, gender, imageurl, lastlogin) VALUES ('ayka', 'test', 'F', 'https://bellfund.ca/wp-content/uploads/2018/03/demo-user.jpg', null);
+INSERT INTO public."user" (username, password, gender, imageurl, lastlogin) VALUES ('adil', 'test', 'M', 'https://bellfund.ca/wp-content/uploads/2018/03/demo-user.jpg', null);
