@@ -1,6 +1,7 @@
 package DBServer;
 
 
+import DAO.LikeMapper;
 import DAO.MessageWrapper;
 import DAO.UserMapper;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -29,6 +30,7 @@ public class PostgresServer {
         Configuration configuration = new Configuration(environment);
         configuration.addMapper(UserMapper.class);
         configuration.addMapper(MessageWrapper.class);
+        configuration.addMapper(LikeMapper.class);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
         return sqlSessionFactory.openSession();
     }
