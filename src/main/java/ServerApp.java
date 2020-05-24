@@ -19,6 +19,10 @@ public class ServerApp {
 //    private final static String NAME = "root";
 //    private final static String PASSWORD = "efqan1999";
 
+   /* private final static String URL = HerokuENV.JDBC_URL();
+    private final static String NAME = HerokuENV.JDBC_USERNAME();
+    private final static String PASSWORD = HerokuENV.JDBC_PASSWORD();
+*/
 
     private final static String URL = "jdbc:postgresql://ec2-54-195-247-108.eu-west-1.compute.amazonaws.com:5432/d6953kdjrm3v1c";
     private final static String NAME = "kgdebzmkjzrjyg";
@@ -47,6 +51,12 @@ public class ServerApp {
         handler.addServlet(new ServletHolder(new RegisterServlet(engine,session)),"/register/");
         handler.addServlet(new ServletHolder(new LoginServlet(engine,session)),"/login/");
         handler.addFilter(new FilterHolder(new AuthenticationFilter(session)),"/",ft);
+       /* handler.addFilter(new FilterHolder(new AuthenticationFilter(session)),"/users/*",ft);
+        handler.addFilter(new FilterHolder(new AuthenticationFilter(session)),"/chat/*",ft);
+*/
+
+
+        //handler.addFilter(new FilterHolder(new AuthenticationFilter(session)),"/users/",ft);
 
         server.setHandler(handler);
         server.start();
