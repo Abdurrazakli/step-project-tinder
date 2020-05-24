@@ -18,10 +18,10 @@ public class ServerApp {
 //    private final static String NAME = "root";
 //    private final static String PASSWORD = "efqan1999";
 
-    private final static String URL = org.adilEfqan.tinder.HerokuENV.JDBC_URL();
-    private final static String NAME = org.adilEfqan.tinder.HerokuENV.JDBC_USERNAME();
-    private final static String PASSWORD = org.adilEfqan.tinder.HerokuENV.JDBC_PASSWORD();
-
+    private final static String URL = HerokuENV.JDBC_URL();
+    private final static String NAME = HerokuENV.JDBC_USERNAME();
+    private final static String PASSWORD = HerokuENV.JDBC_PASSWORD();
+    private final static int PORT = HerokuENV.PORT();
  /*   private final static String URL = "jdbc:postgresql://ec2-54-195-247-108.eu-west-1.compute.amazonaws.com:5432/d6953kdjrm3v1c";
     private final static String NAME = "kgdebzmkjzrjyg";
     private final static String PASSWORD = "55230058b15e4f8e18a9b543cd053afe105413d85b996e6872458bf2030ae99f";
