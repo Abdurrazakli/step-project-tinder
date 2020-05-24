@@ -11,7 +11,7 @@ CREATE TABLE Messages (
                           id varchar DEFAULT uuid_generate_v4(),
                           "from"  varchar NOT NULL ,
                           "to"    varchar NOT NULL ,
-                          date    varchar DEFAULT now(),
+                          date    timestamp without time zone DEFAULT now(),
                           message VARCHAR(260) NOT NULL ,
                           FOREIGN KEY ("from") REFERENCES "user"(id),
                           FOREIGN KEY ("to") REFERENCES "user"(id)

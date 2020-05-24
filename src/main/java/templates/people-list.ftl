@@ -42,7 +42,7 @@
                                             Last Login:  ${user.prettyLastLogin()}<br><small class="text-muted">${user.daysAgo()}</small>
                                         </td>
                                         <td>
-                                            <form method="post" action="/users/?messageTo=${user.slug()}">
+                                            <form method="post" action="/chat/?messageTo=${user.slug()}">
                                                 <div class="col-12 col-lg-6">
                                                     <button type="submit" class="btn btn-outline-success btn-block"><span class="fa fa-message"></span> Send Message</button>
                                                 </div>

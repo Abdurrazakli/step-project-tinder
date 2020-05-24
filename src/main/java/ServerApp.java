@@ -1,6 +1,6 @@
-import DAO.UserMapper;
+import DAO.MessageWrapper;
+import DBServer.DBSetup;
 import DBServer.PostgresServer;
-import Models.User;
 import Servlets.*;
 import org.apache.ibatis.session.SqlSession;
 import org.eclipse.jetty.server.Server;
@@ -10,7 +10,6 @@ import org.eclipse.jetty.servlet.ServletHolder;
 
 import javax.servlet.DispatcherType;
 import java.util.EnumSet;
-import java.util.List;
 
 public class ServerApp {
     private final static PostgresServer dbserver = new PostgresServer();
@@ -37,14 +36,19 @@ public class ServerApp {
         SqlSession session = dbserver.createConnection(URL, NAME, PASSWORD);
 
 //        Testing the connection+
-        UserMapper mapper = session.getMapper(UserMapper.class);
-        List<User> likedUser = mapper.getLikedUser("2ce6981a-b438-4baa-b879-17203fa59210");
-        System.out.println(likedUser.toString());
-        session.commit();
+//        UserMapper mapper = session.getMapper(UserMapper.class);
+//        List<User> likedUser = mapper.getLikedUser("2ce6981a-b438-4baa-b879-17203fa59210");
+//        System.out.println(likedUser.toString());
+//        session.commit();
 //        testing ends
 
+//        MessageWrapper mapper = session.getMapper(MessageWrapper.class);
+//        System.out.println(mapper.getAll().toString());
 
-        handler.addServlet(new ServletHolder(new StaticServlet("css")), "/css/*");
+
+        handler.addServlet(new ServletHolder(new StaticServlet("css")), "/users/liked/css/*");
+        handler.addServlet(new ServletHolder(new StaticServlet("css")), "/chat/css/*");
+        handler.addServlet(new ServletHolder(new StaticServlet("css")), "/users/css/*");
         handler.addServlet(new ServletHolder(new ChatServlet(engine,session)),"/chat/");
         handler.addServlet(new ServletHolder(new LikedUserServlet(engine,session)),"/users/liked/");
         handler.addServlet(new ServletHolder(new UsersServlet(engine,session)),"/users/");

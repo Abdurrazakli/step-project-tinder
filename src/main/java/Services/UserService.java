@@ -20,7 +20,6 @@ public class UserService {
         System.out.println(user);
         if (user.isPresent() && user.get().getPassword().equals(password)){
             User userUpdated = user.get();
-            System.out.println("I came here");
 
             userUpdated.setLastLogin(LocalDateTime.now());
             System.out.println(userUpdated);

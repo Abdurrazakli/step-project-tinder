@@ -30,24 +30,26 @@ public class AuthenticationFilter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
         System.out.println("Filter worked!!!");
         if (isHttp(req,resp) && isCorrectUser((HttpServletRequest) req) ) chain.doFilter(req,resp);
-        HttpServletResponse response = (HttpServletResponse) resp;
+        else{
+            HttpServletResponse response = (HttpServletResponse) resp;
+            messages.WARNING(response,"Please Log In to continue!");
+            response.sendRedirect("/login/");
+        }
 
-        messages.WARNING(response,"Please Log In to continue!");
-        response.sendRedirect("/login/");
+
     }
 
     private boolean isCorrectUser(HttpServletRequest req) {
         try{
+            System.out.println(req.getRequestURI().matches("(/login/|/register/)"));
             return Arrays.stream(req.getCookies()).anyMatch(this::checkCookie) &&
-                    !req.getRequestURI().matches("(/login|/register)");
+                    !req.getRequestURI().matches("(/login/|/register/)");
         }catch (NullPointerException e){
             return false;
         }
     }
 
     private boolean checkCookie(Cookie cookie) {
-        //id = dfsdfsdf
-        //message = fdsfsdfsdfds
         return cookie.getName().equals("id") &&
          service.getUserByID(
                  cookie.getValue()

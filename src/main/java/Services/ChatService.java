@@ -17,4 +17,8 @@ public class ChatService {
     public List<Message> getMessages(String loggedUser,String chatFriend) {
         return mapper.getAllMessageOfUser(loggedUser,chatFriend);
     }
+
+    public void insertMessage(Message newMessage) {
+        mapper.insert(newMessage);
+    }
 }

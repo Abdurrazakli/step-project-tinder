@@ -30,7 +30,7 @@ public interface UserMapper{
             @Result(property = "gender",column = "gender"),
             @Result(property = "imageURL",column = "imageURL")
     })
-    Collection<User> getAll();
+    List<User> getAll();
 
     @Select(getById)
     @Results(value = {
@@ -38,6 +38,7 @@ public interface UserMapper{
             @Result(property = "username",column = "username"),
             @Result(property = "password",column = "password"),
             @Result(property = "gender",column = "gender",javaType = Gender.class),
+            @Result(property = "lastLogin",column = "lastLogin",javaType = java.time.LocalDateTime.class, jdbcType = JdbcType.TIMESTAMP, typeHandler = org.apache.ibatis.type.LocalDateTimeTypeHandler.class),
             @Result(property = "imageURL",column = "imageURL")
     })
     User getById(String id);

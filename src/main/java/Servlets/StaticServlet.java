@@ -15,6 +15,7 @@ public class StaticServlet extends HttpServlet {
   private final String subPath;
 
   public StaticServlet(String subPath) {
+    //where static file located
     this.subPath = subPath;
   }
 
@@ -28,9 +29,10 @@ public class StaticServlet extends HttpServlet {
      */
     // 1
     String filename = req.getPathInfo();
-    String osFileLocation = "./src/main/java/templates/";
-    // 2
+    String osFileLocation = "src/main/java/templates/";
+    // 2 Full path
     Path path = Paths.get(osFileLocation, subPath, filename);
+    System.out.println(path);
     /**
      * Paths.get("a","b","c")      -> "a/b/c"
      * Paths.get("a/","b","c")     -> "a/b/c"
