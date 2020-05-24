@@ -2,6 +2,7 @@ package Services;
 
 
 import DAO.LikeMapper;
+import Models.LikeDislike;
 import lombok.extern.log4j.Log4j2;
 import org.apache.ibatis.session.SqlSession;
 
@@ -20,7 +21,11 @@ public class LikeDislikeService {
 
     public void actBetween(String userId, String toUserID, String action) {
         boolean isLiked = isLike(action);
-        likeMapper.insertToLike(userId,toUserID,isLiked);
+        LikeDislike likeDislike = new LikeDislike(userId, toUserID, isLiked);
+        log.debug(String.format("%s %s for %s",userId,action,toUserID));
+        log.debug(likeDislike);
+
+        likeMapper.insertToLike(likeDislike);
         log.debug(String.format("%s %s for %s",userId,action,toUserID));
     }
 
