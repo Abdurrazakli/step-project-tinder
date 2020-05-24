@@ -4,6 +4,7 @@ import Models.User;
 import Services.CookieService;
 import Services.LikeDislikeService;
 import Services.UserService;
+import lombok.extern.log4j.Log4j2;
 import org.apache.ibatis.session.SqlSession;
 import org.eclipse.jetty.servlet.Source;
 
@@ -18,6 +19,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Optional;
 
+@Log4j2
 public class UsersServlet extends HttpServlet {
     private final TemplateEngine engine;
     private final UserService service;
@@ -35,16 +37,22 @@ public class UsersServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final String user_id = cookieService.fetchUserId(req.getCookies());
 
-        User potentialLover = service.getANewLove(user_id);
+        Optional<User> potentialLover = service.getANewLove(user_id);
+        if(!potentialLover.isEmpty()){
         HashMap<String, Object> data = new HashMap<>();
-        data.put("loverUser",potentialLover);
-        engine.render(resp,pageTemplate,data);
+        data.put("loverUser",potentialLover.get());
+        log.debug("Lover found",potentialLover);
+        engine.render(resp,pageTemplate,data);}
+        else {
+            resp.sendRedirect("/users/liked/");
+            log.info("No user to like. Redirect-> /users/liked/");
+        }
     }
 
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //super.doPost(req, resp);
+
         String loverId = req.getParameter("id");
         String action = req.getParameter("action");
         String userId = cookieService.fetchUserId(req.getCookies());
