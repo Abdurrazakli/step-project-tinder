@@ -25,7 +25,7 @@ public class ServerApp {
  /*   private final static String URL = "jdbc:postgresql://ec2-54-195-247-108.eu-west-1.compute.amazonaws.com:5432/d6953kdjrm3v1c";
     private final static String NAME = "kgdebzmkjzrjyg";
     private final static String PASSWORD = "55230058b15e4f8e18a9b543cd053afe105413d85b996e6872458bf2030ae99f";
-*/    private final static TemplateEngine engine = new TemplateEngine("./src/main/resources/templates/");
+*/
 
     public static void main(String[] args) throws Exception {
         Server server = new Server(8080);
@@ -33,7 +33,7 @@ public class ServerApp {
         ServletContextHandler handler = new ServletContextHandler();
 //        DBSetup.migrate(URL,NAME,PASSWORD);
         SqlSession session = dbserver.createConnection(URL, NAME, PASSWORD);
-
+        TemplateEngine engine = TemplateEngine.resources("templates");
 //        Testing the connection+
 //        UserMapper mapper = session.getMapper(UserMapper.class);
 //        List<User> likedUser = mapper.getLikedUser("2ce6981a-b438-4baa-b879-17203fa59210");

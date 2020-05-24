@@ -6,7 +6,9 @@ import freemarker.template.TemplateExceptionHandler;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.stream.Collectors;
 
@@ -43,6 +45,12 @@ public class TemplateEngine {
             e.printStackTrace();
             throw new RuntimeException("Freemarker error",e);
         }
+    }
+    public static TemplateEngine resources(final String path_from_project_resources) throws IOException, URISyntaxException {
+        String path = Paths
+                .get(TemplateEngine.class.getResource(path_from_project_resources).toURI())
+                .toFile().getAbsolutePath();
+        return new TemplateEngine(path);
     }
 
     public void render(HttpServletResponse resp,String templateName){
