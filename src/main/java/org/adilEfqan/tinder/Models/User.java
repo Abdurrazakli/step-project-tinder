@@ -25,6 +25,7 @@ public class User {
     public User(String username, String password, String gender,String imageURL){ //from user
         this(username, password, gender);
         this.imageURL=imageURL;
+        this.lastLogin = LocalDateTime.now();
     } //image
     public User(String username, String password, String gender){ // from user with default image
         super();

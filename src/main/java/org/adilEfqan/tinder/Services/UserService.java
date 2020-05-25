@@ -23,7 +23,6 @@ public class UserService {
             User userUpdated = user.get();
 
             userUpdated.setLastLogin(LocalDateTime.now());
-            log.error("Auth error");
             log.info(userUpdated);
             dao.update(userUpdated);
             session.commit();
