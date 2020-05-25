@@ -2,7 +2,7 @@
 
 #### Create the MVP of a dating app similar to Tinder
 
-You can find ready HTML templates of all needed pages in the [templates](../src/main/java/templates) folder.
+You can find ready HTML templates of all needed pages in the [templates](../src/main/resources/templates) folder.
 
 #### Teamwork
 
@@ -27,7 +27,7 @@ All students will work on this project in groups of three persons. Group members
 10. Create a few profiles (name + link to a picture from the web)
 11. When a Yes/No button is pressed - show the next profile, the picture and name on the page should change
 12. When the list of the available profiles runs out - start showing them again
-13. Create a DAO class, store collection of profiles there
+13. Create a org.adilEfqan.tinder.DAO class, store collection of profiles there
 14. Add a servlet with the "/liked" address, output a static (hardcoded) list of profiles that user "liked"
 15. After the user had clicked on all the available profiles, redirect him to the "/liked" page
 16. "/liked" page should only show the profiles for which we pressed Yes
@@ -35,7 +35,7 @@ All students will work on this project in groups of three persons. Group members
 18. Add a servlet with the "/messages/{id}" address, show a static chat with harcoded messages there
 19. When clicking on some profile on the "/liked" page, redirect to the "/messages/{id}" page where you will show a harcoded dialogue with the user
 20. Connect app to MySQL/PostgreSQL database (local or remote)
-21. Write a new implementation of the DAO classes so that all the users are stored in the database
+21. Write a new implementation of the org.adilEfqan.tinder.DAO classes so that all the users are stored in the database
 22. Show real messages between users on the "/messages/{id}" page
 23. Add a possibility to make a POST request on the server with a new message on this page
 24. Create a doPost method in the corresponding servlet, which will save the new message to the database
