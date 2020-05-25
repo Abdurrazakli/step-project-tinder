@@ -14,10 +14,6 @@ public interface UserMapper{
     String insert = "INSERT INTO \"user\" (USERNAME, PASSWORD, GENDER, IMAGEURL ) VALUES (#{username}, #{password}, #{gender}, #{imageURL})";
     String update = "UPDATE \"user\" SET USERNAME = #{username}, PASSWORD = #{password}, GENDER = #{gender}, IMAGEURL = #{imageURL}, LASTLOGIN=#{lastLogin,typeHandler=org.apache.ibatis.type.LocalDateTimeTypeHandler} WHERE ID = #{userID}";
     String getBY = "SELECT * FROM \"user\" WHERE USERNAME=#{username}";
-  /*  String getUserOneByOne = "SELECT id, username, gender,imageURL, password FROM \"user\" u\n" +
-            "LEFT OUTER JOIN Liked l ON l.toUser != u.id\n" +
-            "WHERE #{userID}=l.\"user\" AND u.id !=#{userID} limit 1";
- */
     String getUserOneByOne = "SELECT ID,USERNAME,PASSWORD,GENDER,LASTLOGIN,IMAGEURL FROM \"user\" u WHERE u.ID NOT IN( select l.touser from liked l where l.\"user\" = #{userID}) and u.id != #{userID } limit 1";
     @Select(getAll)
     @Results(value = {

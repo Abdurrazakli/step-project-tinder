@@ -1,12 +1,13 @@
 package org.adilEfqan.tinder.Services;
 
+import lombok.extern.log4j.Log4j2;
 import org.adilEfqan.tinder.DAO.UserMapper;
 import org.adilEfqan.tinder.Models.User;
 import org.apache.ibatis.session.SqlSession;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
-
+@Log4j2
 public class UserService {
     private final SqlSession session;
     UserMapper dao;
@@ -17,13 +18,13 @@ public class UserService {
 
     public Optional<String> authenticateUser(String username, String password) {
         Optional<User> user = Optional.ofNullable(dao.getBy(username));
-        System.out.println(user);
+        log.info(user);
         if (user.isPresent() && user.get().getPassword().equals(password)){
             User userUpdated = user.get();
 
             userUpdated.setLastLogin(LocalDateTime.now());
-            System.out.println("Error here!");
-            System.out.println(userUpdated);
+            log.error("Auth error");
+            log.info(userUpdated);
             dao.update(userUpdated);
             session.commit();
             return Optional.of(user.get().getUserID());

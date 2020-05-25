@@ -6,9 +6,9 @@ import freemarker.template.TemplateExceptionHandler;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class TemplateEngine {
@@ -33,8 +33,8 @@ public class TemplateEngine {
     }
 
     public static TemplateEngine resources(final String path_from_project_resources){
-        String path = TemplateEngine.class
-                .getClassLoader().getResource(path_from_project_resources).getPath();
+        String path = Objects.requireNonNull(TemplateEngine.class
+                .getClassLoader().getResource(path_from_project_resources)).getPath();
         return new TemplateEngine(path);
     }
     public void render( HttpServletResponse resp, String templateName, HashMap<String, Object> data){

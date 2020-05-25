@@ -35,7 +35,6 @@ public class LikedUserServlet extends HttpServlet {
                 .filter(this::checkCookie)
                 .findFirst();
         if (!user.isPresent()){
-            System.out.println("User not exists");
             log.warn("User not exists");
             resp.sendRedirect("/login/");
         }else {
@@ -48,14 +47,11 @@ public class LikedUserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("I am here!");
         String messageTo = req.getParameter("messageTo");
         resp.sendRedirect(String.format("/chat/?messageTo=%s",messageTo));
     }
 
     private boolean checkCookie(Cookie cookie) {
-        //id = dfsdfsdf
-        //message = fdsfsdfsdfds
         return cookie.getName().equals("id");
     }
 }
