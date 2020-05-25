@@ -51,9 +51,8 @@ public class ServerApp {
         handler.addServlet(new ServletHolder(new RegisterServlet(engine,session)),"/register/");
         handler.addServlet(new ServletHolder(new LoginServlet(engine,session)),"/login/");
         handler.addFilter(new FilterHolder(new AuthenticationFilter(session)),"/",ft);
-       /* handler.addFilter(new FilterHolder(new AuthenticationFilter(session)),"/users/*",ft);
+        handler.addFilter(new FilterHolder(new AuthenticationFilter(session)),"/users/*",ft);
         handler.addFilter(new FilterHolder(new AuthenticationFilter(session)),"/chat/*",ft);
-*/
 
 
         //handler.addFilter(new FilterHolder(new AuthenticationFilter(session)),"/users/",ft);
