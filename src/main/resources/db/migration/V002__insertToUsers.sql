@@ -1,8 +1,8 @@
-INSERT INTO public."user" (username, password, gender, imageurl, lastlogin) VALUES ('nata', 'test', 'F', 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/natalie-portman-1558430184.jpg', null);
-INSERT INTO public."user" (username, password, gender, imageurl, lastlogin) VALUES ('efqan', 'test', 'M', 'https://stat1.bollywoodhungama.in/wp-content/uploads/2017/08/When-Aamir-Khan-did-not-want-to-do-Secret-Superstar.jpg', null);
-INSERT INTO public."user" (username, password, gender, imageurl, lastlogin) VALUES ('ayka', 'test', 'F', 'https://purewows3.imgix.net/images/articles/2018_10/lady-gaga-red-dress-msn.jpg', null);
-INSERT INTO public."user" (username, password, gender, imageurl, lastlogin) VALUES ('adil', 'test', 'M', 'https://www.verdict.co.uk/wp-content/uploads/2017/09/MorganFreeman.jpg', null);
-INSERT INTO public."user" (username, password, gender, imageurl, lastlogin) VALUES ('jesika', 'test', 'F', 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/natalie-portman-1558430184.jpg', null);
-INSERT INTO public."user" (username, password, gender, imageurl, lastlogin) VALUES ('botas', 'test', 'M', 'https://stat1.bollywoodhungama.in/wp-content/uploads/2017/08/When-Aamir-Khan-did-not-want-to-do-Secret-Superstar.jpg', null);
-INSERT INTO public."user" (username, password, gender, imageurl, lastlogin) VALUES ('jane', 'test', 'F', 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSEBcYhIp7KWhmb8oHFlOBvcSHqTaMHgztpR_K1gVEdCEsuG4-a&usqp=CAU', null);
-INSERT INTO public."user" (username, password, gender, imageurl, lastlogin) VALUES ('namiq', 'test', 'M', 'https://sun9-9.userapi.com/c845219/v845219762/4bbe4/cWAXD8aWtCU.jpg?ava=1', null);
+INSERT INTO public."user" (username, password, gender, imageurl) VALUES ('nata', 'test', 'F', 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/natalie-portman-1558430184.jpg');
+INSERT INTO public."user" (username, password, gender, imageurl) VALUES ('efqan', 'test', 'M', 'https://stat1.bollywoodhungama.in/wp-content/uploads/2017/08/When-Aamir-Khan-did-not-want-to-do-Secret-Superstar.jpg');
+INSERT INTO public."user" (username, password, gender, imageurl) VALUES ('ayka', 'test', 'F', 'https://purewows3.imgix.net/images/articles/2018_10/lady-gaga-red-dress-msn.jpg');
+INSERT INTO public."user" (username, password, gender, imageurl) VALUES ('adil', 'test', 'M', 'https://www.verdict.co.uk/wp-content/uploads/2017/09/MorganFreeman.jpg');
+INSERT INTO public."user" (username, password, gender, imageurl) VALUES ('jesika', 'test', 'F', 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/natalie-portman-1558430184.jpg');
+INSERT INTO public."user" (username, password, gender, imageurl) VALUES ('botas', 'test', 'M', 'https://stat1.bollywoodhungama.in/wp-content/uploads/2017/08/When-Aamir-Khan-did-not-want-to-do-Secret-Superstar.jpg');
+INSERT INTO public."user" (username, password, gender, imageurl) VALUES ('jane', 'test', 'F', 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSEBcYhIp7KWhmb8oHFlOBvcSHqTaMHgztpR_K1gVEdCEsuG4-a&usqp=CAU');
+INSERT INTO public."user" (username, password, gender, imageurl) VALUES ('namiq', 'test', 'M', 'https://sun9-9.userapi.com/c845219/v845219762/4bbe4/cWAXD8aWtCU.jpg?ava=1');
