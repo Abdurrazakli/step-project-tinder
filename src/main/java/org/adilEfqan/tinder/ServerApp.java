@@ -38,16 +38,6 @@ public class ServerApp {
 //        DBSetup.migrate(URL,NAME,PASSWORD);
         SqlSession session = dbserver.createConnection(URL, NAME, PASSWORD);
 
-//        Testing the connection+
-//        UserMapper mapper = session.getMapper(UserMapper.class);
-//        List<User> likedUser = mapper.getLikedUser("2ce6981a-b438-4baa-b879-17203fa59210");
-//        System.out.println(likedUser.toString());
-//        session.commit();
-//        testing ends
-
-//        MessageWrapper mapper = session.getMapper(MessageWrapper.class);
-//        System.out.println(mapper.getAll().toString());
-
 
         handler.addServlet(new ServletHolder(new StaticServlet("css")), "/login/css/*");
         handler.addServlet(new ServletHolder(new StaticServlet("css")), "/users/liked/css/*");

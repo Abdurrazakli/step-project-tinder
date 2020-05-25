@@ -1,9 +1,6 @@
-package Servlets;
+package org.adilEfqan.tinder.Servlets;
 
-import Services.CookieService;
-import org.eclipse.jetty.servlet.Source;
-
-import javax.servlet.Servlet;
+import org.adilEfqan.tinder.Services.CookieService;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
