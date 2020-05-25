@@ -16,7 +16,7 @@ public class User {
     private String password;
     private Gender gender;
     private LocalDateTime lastLogin;
-    private String imageURL="https://i.imgur.com/EvEgy19.jpg";
+    private String imageURL;
 
     public User(){}
     public User(String userID,String username, String password, String gender,String imageURL){ //for data from db

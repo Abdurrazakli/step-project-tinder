@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
             resp.sendRedirect("/login/");
         }else {
 
-            addCookie(resp,loggedInUserID.get().toString());
+            addCookie(resp,loggedInUserID.get());
 
             messages.INFO(resp,"Success");
             resp.sendRedirect("/users/");

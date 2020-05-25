@@ -24,6 +24,7 @@ public class LikeDislikeService {
         LikeDislike likeDislike = new LikeDislike(userId, toUserID, isLiked);
         log.debug(likeDislike);
         likeMapper.insertToLike(likeDislike);
+        session.commit();
     }
 
     private boolean isLike(String action) {

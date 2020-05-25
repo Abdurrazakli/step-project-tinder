@@ -39,7 +39,7 @@
 
             <div class="form-group">
                 <label for="image">Image:</label>
-                <input type="text" name="imageURL" class="form-control" placeholder="Enter image path(Optional)" id="imageURL">
+                <input type="text" required name="imageURL" class="form-control" placeholder="Enter image path" id="imageURL">
             </div>
 
 

@@ -41,6 +41,8 @@
             </div>
             <!--/row-->
         </div>
+        <a href="liked/" class="btn btn-outline-primary float-left" >Liked Users</a>
+
 
         <!--/card-block-->
     </div>

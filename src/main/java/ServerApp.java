@@ -50,7 +50,9 @@ public class ServerApp {
         handler.addServlet(new ServletHolder(new StaticServlet("css")), "/users/liked/css/*");
         handler.addServlet(new ServletHolder(new StaticServlet("css")), "/chat/css/*");
         handler.addServlet(new ServletHolder(new StaticServlet("css")), "/users/css/*");
+        handler.addServlet(new ServletHolder(new StaticServlet("css")), "/logout/css/*");
         handler.addServlet(new ServletHolder(new ChatServlet(engine,session)),"/chat/");
+        handler.addServlet(new ServletHolder(new LogOutServlet(engine)),"/logout/");
         handler.addServlet(new ServletHolder(new LikedUserServlet(engine,session)),"/users/liked/");
         handler.addServlet(new ServletHolder(new UsersServlet(engine,session)),"/users/");
         handler.addServlet(new ServletHolder(new RegisterServlet(engine,session)),"/register/");

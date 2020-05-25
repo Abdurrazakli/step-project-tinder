@@ -22,6 +22,7 @@ public class UserService {
             User userUpdated = user.get();
 
             userUpdated.setLastLogin(LocalDateTime.now());
+            System.out.println("Error here!");
             System.out.println(userUpdated);
             dao.update(userUpdated);
             session.commit();
